@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <title>销售业绩排行榜</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center">销售业绩排行榜</h1>
+    <!--表格选择器开始-->
+    <select id="tableSelect" onchange="showTable()" class="form-select" aria-label="选择部门">
+      <option value="">请选择部门</option>
+      <option value="table1">总业绩</option>
+      <option value="table2">第一事业部</option>
+      <option value="table3">无限事业部</option>
+      <option value="table3">大麦事业部</option>
+      <option value="table3">星程商学院</option>
+    </select>
+    <!--表格选择器结束-->
+    <div class="container my-4">
+      <!-- 图片容器 -->
+      <div id="imageContainer" style="display: none; text-align: center;">
+        <img src="image/qxzbm.jpg" class="img-fluid">
+      </div>
+      <!--表格开始-->
+      <div class="container my-4">
+        <!--总业绩-->
+        <table id="table1" class="table table-bordered text-center">
+          <thead>
+            <tr>
+              <th scope="col" class="col-1">总业绩</th>
+              <th scope="col" class="col-1">总单数</th>
+              <th scope="col" class="col-1">人均产值</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">2888888元</th>
+              <td>200单</td>
+              <td>57,777.76元</td>
+            </tr>
+            <tr>
+              <!-- 附属表格 -->
+              <td colspan="4">
+                <table id="subTable1" class="table table-bordered text-center">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="col-1">第一名</th>
+                      <th scope="col" class="col-1">第二名</th>
+                      <th scope="col" class="col-1">第三名</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>张功鲁</td>
+                      <td>白金菊</td>
+                      <td>范聪</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <td>188888</td>
+                      <td>166666</td>
+                      <td>88888</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!--第一事业部-->
+        <div class="table-responsive">
+          <table id="table2" class="table table-bordered text-center" style="display: none;">
+            <thead>
+              <tr>
+                <th scope="col" class="col-1">总业绩</th>
+                <th scope="col" class="col-1">总单数</th>
+                <th scope="col" class="col-1">人均产值</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>50675元</td>
+                <td>7单</td>
+                <td>4607单</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <table id="subTable2" class="table table-bordered text-center" style="display: none;">
+          <thead>
+            <tr>
+              <th scope="col" class="col-1">排 名</th>
+              <th scope="col">姓 名</th>
+              <th scope="col">业 绩</th>
+              <th scope="col">单 量</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>第一项</td>
+              <td>第二项</td>
+              <td>第三项</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>第一项</td>
+              <td>第二项</td>
+              <td>第三项</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>第一项</td>
+              <td>第二项</td>
+              <td>第三项</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>第一项</td>
+              <td>第二项</td>
+              <td>第三项</td>
+            </tr>
+          </tbody>
+        </table>
+        <!--无限事业部-->
+        <div class="table-responsive">
+          <table id="table3" class="table table-bordered text-center" style="display: none;">
+            <thead>
+              <tr>
+                <th scope="col" class="col-1">总业绩</th>
+                <th scope="col" class="col-1">总单数</th>
+                <th scope="col" class="col-1">人均产值</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>50675元</td>
+                <td>7单</td>
+                <td>4607单</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <!--表格结束-->
+        <!-- 引入 Bootstrap v5 JavaScript -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+          // 在页面加载时显示表格1
+          window.onload = function () {
+            var table1 = document.getElementById("table1");
+            table1.style.display = "table";
+          }
+
+          function showTable() {
+            var select = document.getElementById("tableSelect");
+            var selectedValue = select.value;
+            // 隐藏所有表格
+            var tables = document.getElementsByTagName("table");
+            for (var i = 0; i < tables.length; i++) {
+              tables[i].style.display = "none";
+            }
+            // 隐藏图片容器
+            var imageContainer = document.getElementById("imageContainer");
+            imageContainer.style.display = "none";
+            // 显示选中的表格
+            if (selectedValue) {
+              var table = document.getElementById(selectedValue);
+              table.style.display = "table";
+              // 如果选择了table1，则显示subTable1
+              if (selectedValue === "table1") {
+                var subTable = document.getElementById("subTable1");
+                subTable.style.display = "table";
+              }
+              // 如果选择了table2，则显示subTable2
+              if (selectedValue === "table2") {
+                var subTable = document.getElementById("subTable2");
+                subTable.style.display = "table";
+              }
+              // 如果选择了table3，则显示subTable3
+              if (selectedValue === "table3") {
+                var subTable = document.getElementById("subTable3");
+                subTable.style.display = "table";
+              }
+            } else {
+              // 如果选择了空值，则显示图片容器
+              imageContainer.style.display = "block";
+            }
+          }
+        </script>
+
+</html>
